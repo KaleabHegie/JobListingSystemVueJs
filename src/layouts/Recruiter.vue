@@ -1,6 +1,7 @@
 <template>
     <div>
-     <CandidateNavBar />
+     <AdminNavBar />
+     <AdminSideBar />
      
   
       
@@ -8,19 +9,18 @@
         <router-view></router-view>
       </main>
       
-      <CandidateFooter />
     </div>
   </template>
   
   <script>
 
-import CandidateNavBar from '../components/candidate/include/CandidateNavBar.vue';
-import CandidateFooter from '../components/candidate/include/CandidateFooter.vue';
+  import AdminNavBar from '../components/admin/include/AdminNavBar.vue';
+  import AdminSideBar from '../components/admin/include/AdminSideBar.vue';
 
   export default {
     components: {
-      CandidateNavBar,
-      CandidateFooter,
+      AdminNavBar,
+      AdminSideBar,
     }
   }
 </script>

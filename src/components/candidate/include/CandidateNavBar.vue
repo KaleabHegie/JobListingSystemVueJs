@@ -12,7 +12,7 @@
             <div class="hidden sm:block">
               <div class="flex space-x-4">
                 <router-link to="/" class="text-gray-900 hover:bg-gray-200 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Home</router-link>
-                <router-link to="/jobs" class="text-gray-900 hover:bg-gray-200 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Jobs</router-link>
+                <router-link to="/job" class="text-gray-900 hover:bg-gray-200 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Jobs</router-link>
                 <router-link to="/about" class="text-gray-900 hover:bg-gray-200 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">About</router-link>
                 <router-link to="/contact" class="text-gray-900 hover:bg-gray-200 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Contact</router-link>
                 <router-link to="/faqs" class="text-gray-900 hover:bg-gray-200 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">FAQ</router-link>
@@ -49,7 +49,7 @@
       <div class="sm:hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-3 space-y-1">
           <router-link to="/" class="text-gray-900 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium">Home</router-link>
-          <router-link to="/jobs" class="text-gray-900 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium">Jobs</router-link>
+          <router-link to="/job" class="text-gray-900 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium">Jobs</router-link>
           <router-link to="/about" class="text-gray-900 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium">About</router-link>
           <router-link to="/contact" class="text-gray-900 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium">Contact</router-link>
           <router-link to="/faqs" class="text-gray-900 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium">FAQ</router-link>

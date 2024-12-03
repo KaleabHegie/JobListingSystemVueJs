@@ -2,11 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router';
 import homeRoutes from './home'; 
 import authRoutes from './auth';
 import profileRoutes from './profile';
+import recruiterRoutes from './recruiter';
 
 const routes = [
   ...homeRoutes, 
   ...authRoutes,
-  ...profileRoutes
+  ...profileRoutes,
+  ...recruiterRoutes
 ];
 
 const router = createRouter({
