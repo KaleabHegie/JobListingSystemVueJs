@@ -3,7 +3,7 @@
 
 
 <div class="w-full lg:w-3/5">
-  <img src="../../assets/images/ppp.webp" alt="Job Finding GIF" class="w-full">
+  <img src="../../../assets/images/ppp.webp" alt="Job Finding GIF" class="w-full">
 </div>
 
 

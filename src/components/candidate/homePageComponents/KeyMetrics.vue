@@ -46,7 +46,7 @@
   .parallax-stats {
     position: relative;
     height: 250px; /* Adjust as needed */
-    background-image: url('../../assets/images/job-search.webp'); /* Background image path */
+    background-image: url('../../../assets/images/job-search.webp'); /* Background image path */
     background-attachment: fixed;
     background-size: cover;
     background-position: center;

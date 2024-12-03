@@ -1,27 +1,28 @@
 <template>
-    <div>
-     <CandidateNavBar />
-  
-      
-      <main>
-        <Home />
-      </main>
-      
-      <CandidateFooter />
-    </div>
+    <component :is="layout">
+      <router-view />
+    </component>
   </template>
   
   <script>
-
-  import Home from './src/views/Home.vue';
-  import CandidateNavBar from './src/components/candidate/include/CandidateNavBar.vue'
-  import CandidateFooter from './src/components/candidate/include/CandidateFooter.vue';
-
+  import Candidate from './src/layouts/Candidate.vue';
+  import Profile from './src/layouts/Profile.vue';
+  import Recruiter from './src/layouts/Recruiter.vue';
+  
   export default {
-    components: {
-      CandidateNavBar,
-      CandidateFooter,
-      Home
-    }
-  }
-</script>
+    computed: {
+      layout() {
+        const layout = this.$route.meta.layout || 'default';
+        switch (layout) {
+          case 'profile':
+            return Profile;
+          case 'recruiter':
+            return Recruiter;
+          default:
+            return Candidate; // Default to ProfileLayout
+        }
+      },
+    },
+  };
+  </script>
+  

@@ -16,7 +16,7 @@
           </div>
           <div class="lg:col-start-2 lg:pt-10">
             <div class="relative">
-              <img src="../../assets/images/job-search.webp" alt="Career" class="h-96 w-full object-cover">
+              <img src="../../../assets/images/job-search.webp" alt="Career" class="h-96 w-full object-cover">
             </div>
           </div>
         </div>
