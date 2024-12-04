@@ -8,7 +8,7 @@
                   <ul class="mt-4 space-y-2">
                       <li class="flex items-center">
                           <i class="fas fa-chevron-right text-indigo-600 mr-2"></i>
-                          <router-link to="/jobs" class="text-gray-300 hover:text-white">Browse Jobs</router-link>
+                          <router-link to="/job" class="text-gray-300 hover:text-white">Browse Jobs</router-link>
                       </li>
                       <li class="flex items-center">
                           <i class="fas fa-chevron-right text-indigo-600 mr-2"></i>
@@ -16,7 +16,7 @@
                       </li>
                       <li class="flex items-center">
                           <i class="fas fa-chevron-right text-indigo-600 mr-2"></i>
-                          <router-link to="/jobs" class="text-gray-300 hover:text-white">Job List</router-link>
+                          <router-link to="/job" class="text-gray-300 hover:text-white">Job List</router-link>
                       </li>
                       <li class="flex items-center">
                           <i class="fas fa-chevron-right text-indigo-600 mr-2"></i>

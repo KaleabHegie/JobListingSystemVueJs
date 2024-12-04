@@ -7,16 +7,17 @@
 
             <h1 class="text-4xl font-bold text-gray-800 text-center mb-1">Jobs You May Be Interested In</h1>
             <p class="text-xl text-gray-800 text-center mb-10">Explore our job listings from top companies.</p>
-
+            <div class="flex gap-5">
             <JobFilter />
             <JobList />
+            </div>
         </div>
     </section>
     <CandidateFooter />
 </template>
 
 
-<script>
+<script >
 import JobSearch from '../../components/candidate/jobPageComponents/JobSearch.vue';
 import JobFilter from '../../components/candidate/jobPageComponents/JobFilter.vue';
 import JobList from '../../components/candidate/jobPageComponents/JobList.vue';

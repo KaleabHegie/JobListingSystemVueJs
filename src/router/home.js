@@ -12,7 +12,7 @@ export default [
       meta: { layout: 'candidate' },
     },
     {
-      path: '/job_detail/1',
+      path: '/job_detail/:id',
       name: 'JobDetail',
       component: () => import('@/views/candidateView/JobDetail.vue'),
       meta: { layout: 'candidate' },
