@@ -49,7 +49,7 @@
             :key="sector._id" 
             class="hover:bg-gray-100"
           >
-            <td class="py-2 px-4 border-b">{{ sector.name }}</td>
+            <td class="py-2 px-4 border-b">{{ sector.title }}</td>
             <td class="py-2 px-4 border-b">{{ sector.description }}</td>
             <td class="border-b">
               <button
@@ -138,28 +138,39 @@ export default {
       modalVisible.value = false;
     }
 
-    async function saveSector(sectorData) {
-      try {
-        if (sectorData._id) {
-          // Update existing sector
-          await jobSectorStore.updateSector(sectorData._id, sectorData);
-          alert("Sector updated successfully!");
-        } else {
-          // Create new sector
-          await jobSectorStore.addSector(sectorData);
-          alert("Sector added successfully!");
-        }
-        fetchJobSectors(); // Refresh the list
-        closeModal(); // Close the modal
-      } catch (error) {
-        console.error("Error saving Sector:", error);
-        alert("Failed to save the Sector. Please try again.");
-      }
+    let isSaving = false; // Add a flag outside the function to track the saving state
+
+async function saveSector(sectorData) {
+  if (isSaving) {
+    return; // Prevent duplicate calls
+  }
+  isSaving = true; // Set the flag to true
+
+  try {
+    if (sectorData._id) {
+      // Update existing sector
+      await jobSectorStore.updateSector(sectorData._id, sectorData);
+      alert("Sector updated successfully!");
+    } else {
+      // Create new sector
+      await jobSectorStore.addSector(sectorData);
+      alert("Sector added successfully!");
     }
+    fetchJobSectors(); // Refresh the list
+    closeModal(); // Close the modal
+  } catch (error) {
+    console.error("Error saving Sector:", error);
+    alert("Failed to save the Sector. Please try again.");
+  } finally {
+    isSaving = false; // Reset the flag once the operation is complete
+  }
+}
+
 
     async function deleteSector(sectorId) {
       try {
         await jobSectorStore.deleteSector(sectorId);
+        alert("Sector deleted successfully!");
         fetchJobSectors(); // Refresh Sector list
       } catch (error) {
         console.error("Error deleting Sector:", error);

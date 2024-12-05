@@ -48,6 +48,16 @@
               Candidates
             </router-link>
           </li>
+
+          <li>
+            <router-link
+              to="/recruiter/companies"
+              class="flex items-center p-3 text-gray-300 hover:bg-indigo-600 rounded-md"
+            >
+              <i class="fas fa-building mr-3"></i>
+              Companies
+            </router-link>
+          </li>
   
           <!-- Applications Link -->
           <li>

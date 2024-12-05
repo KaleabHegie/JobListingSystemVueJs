@@ -26,7 +26,7 @@
                 <select v-model="formData.sector" id="sector" class="w-full px-4 py-2 border rounded-md" required>
                     <option value="" disabled>Select a sector</option>
                     <option v-for="sector in sectors" :key="sector._id" :value="sector._id">
-                        {{ sector.name }}
+                        {{ sector.title }}
                     </option>
                 </select>
             </div>
@@ -104,7 +104,7 @@
             </label>
         </div>
 
-        <button @click="handleSubmit"> Submit </button>
+        <button class="px-4 py-2 mt-3 bg-blue-600 text-white rounded-lg" type="submit" @click="handleSubmit"> Submit </button>
     
     </form>
 </template>
@@ -142,7 +142,6 @@ export default {
             this.formData.skills.splice(index, 1);
         },
         handleSubmit() {
-    console.log("Form submitted:", this.formData);
     this.$emit("save", this.formData);
 }
 

@@ -10,6 +10,14 @@
                 required />
         </div>
 
+        <!-- <div>
+            <label for="iconPath" class="p-2 pl-0 block text-sm font-medium text-gray-700">
+                Icon
+            </label>
+            <input v-model="formData.iconPath" type="text" id="title" class="w-full px-4 py-2 border rounded-md"
+                required />
+        </div> -->
+
         <div>
             <label for="description" class="p-2 pl-0 block text-sm font-medium text-gray-700">Description</label>
             <textarea v-model="formData.description" id="description" class="w-full px-4 py-2 border rounded-md"
@@ -17,8 +25,8 @@
         </div>
 
 
-
-        <button @click="handleSubmit"> Submit </button>
+        
+        <button @click="handleSubmit" class="px-4 py-2 mt-3 bg-blue-600 text-white rounded-lg">Submit</button>
 
     </form>
 </template>

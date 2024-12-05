@@ -34,7 +34,7 @@ export const useJobSectorManager = defineStore('sectors', {
       try {
         this.loading = true;
         const response = await axios.post('/job-sectors/create_job_sector', sectorData);
-        this.sectors.push(response.data);
+        // this.sectors.push(response.data);
         return response.data;
       } catch (error) {
         this.error = error.response?.data?.message || 'Error adding sector';
@@ -66,7 +66,7 @@ export const useJobSectorManager = defineStore('sectors', {
       try {
         this.loading = true;
         await axios.delete(`/job-sectors/delete_job_sector/${sectorId}`);
-        this.sectors = this.sectors.filter((sector) => sector._id !== sectorId);
+        // this.sectors = this.sectors.filter((sector) => sector._id !== sectorId);
         // this.updateStats();
       } catch (error) {
         this.error = error.response?.data?.message || 'Error deleting sector';

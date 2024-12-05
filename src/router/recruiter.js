@@ -17,6 +17,18 @@ export default [
         component: () => import('@/views/recruiterView/Candidates.vue'),
         meta : {layout : 'recruiter'},
     },
+    {
+      path: '/recruiter/candidate-details/:id',
+      name: 'CandidatesDetails',
+      component: () => import('@/views/recruiterView/AdminUserView.vue'),
+      meta : {layout : 'recruiter'},
+  },
+    {
+      path: '/recruiter/companies',
+      name: 'Companies',
+      component: () => import('@/views/recruiterView/Companies.vue'),
+      meta : {layout : 'recruiter'},
+  },
       {
         path: '/recruiter/applications',
         name: 'Applications',

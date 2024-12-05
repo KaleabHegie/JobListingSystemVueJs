@@ -53,10 +53,13 @@
             :key="job._id"
             class="hover:bg-gray-100"
           >
-            <td class="py-2 px-4 border-b">{{ job.title }}</td>
-            <td class="py-2 px-4 border-b">{{ job.company.name }}</td>
-            <td class="py-2 px-4 border-b">{{ job.location }}</td>
-            <td class="py-2 px-4 border-b">{{ job.createdAt }}</td>
+            <td class="py-2 px-4 border-b">{{ job?.title }}</td>
+            <td class="py-2 px-4 border-b">{{ job?.company?.name }}</td>
+            <td class="py-2 px-4 border-b">{{ job?.location }}</td>
+            <td class="py-2 px-4 border-b">
+  {{ new Date(job?.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) }}
+</td>
+
             <td class=" border-b">
               <button
                 @click="openEditModal(job)"
@@ -65,7 +68,7 @@
                 <i class="fas fa-pen"></i> <!-- Edit icon -->
               </button>
               <button
-                @click="deleteJob(job._id)"
+                @click="deleteJob(job?._id)"
                 class="text-white bg-red-600 hover:bg-red-700 p-2 rounded-md ml-2"
               >
                 <i class="fas fa-trash-alt"></i> <!-- Delete icon -->
@@ -144,7 +147,9 @@ export default {
       this.modalVisible = false;
     },
     async saveJob(jobData) {
-      console.log("Received data from child:", jobData);
+  if (this.isSaving) return; // Prevent duplicate calls
+  this.isSaving = true;
+
   try {
     if (jobData._id) {
       // Update existing job
@@ -155,11 +160,13 @@ export default {
       await this.jobManager.addJob(jobData);
       alert("Job added successfully!");
     }
-    this.fetchJobs(); // Refresh the list
-    this.closeModal(); // Close the modal
+    await this.fetchJobs(); // Ensure fetch completes before proceeding
   } catch (error) {
     console.error("Error saving job:", error);
     alert("Failed to save the job. Please try again.");
+  } finally {
+    this.isSaving = false; // Reset flag
+    this.closeModal(); // Close the modal
   }
 },
     async deleteJob(jobId) {
