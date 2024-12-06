@@ -39,7 +39,7 @@
         </div>
 
         <!-- Desktop Buttons -->
-        <div class="hidden sm:flex">
+        <div class="hidden sm:flex" v-if="!isAuthenticated">
           <router-link
             to="/register"
             class="text-white bg-indigo-600 hover:bg-indigo-500 px-5 py-3 rounded-md text-sm font-medium"
@@ -50,6 +50,21 @@
             class="text-white ml-4 bg-green-600 hover:bg-green-500 px-5 py-3 rounded-md text-sm font-medium"
             >Login</router-link
           >
+        </div>
+
+        <!-- User Profile Button (Visible when logged in) -->
+        <div class="hidden sm:flex items-center space-x-4" v-else>
+          <router-link
+            to="/profile"
+            class="text-gray-900 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium"
+            >Profile</router-link
+          >
+          <button
+            @click="logout"
+            class="text-white bg-red-600 hover:bg-red-500 px-5 py-3 rounded-md text-sm font-medium"
+          >
+            Logout
+          </button>
         </div>
 
         <!-- Mobile menu button -->
@@ -87,33 +102,22 @@
         </div>
       </div>
     </div>
-
-    <!-- Mobile menu -->
-    <div v-if="isMenuOpen" class="sm:hidden" id="mobile-menu">
-      <div class="px-2 pt-2 pb-3 space-y-1">
-        <router-link to="/" class="text-gray-900 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium">Home</router-link>
-        <router-link to="/job" class="text-gray-900 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium">Jobs</router-link>
-        <router-link to="/about" class="text-gray-900 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium">About</router-link>
-        <router-link to="/contact" class="text-gray-900 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium">Contact</router-link>
-        <router-link to="/faqs" class="text-gray-900 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium">FAQ</router-link>
-        <router-link to="/register" class="text-white bg-indigo-600 hover:bg-indigo-500 block px-3 py-2 rounded-md text-base font-medium">Sign Up</router-link>
-        <router-link to="/login" class="text-white bg-green-600 hover:bg-green-500 block px-3 py-2 rounded-md text-base font-medium">Login</router-link>
-      </div>
-    </div>
   </nav>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      isMenuOpen: false,
-    };
-  },
-  methods: {
-    toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen;
-    },
-  },
+<script setup>
+import { computed } from 'vue';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/manager/auth'; // Adjust the path as needed
+
+const authStore = useAuthStore();
+
+// Computed property to check authentication status
+const isAuthenticated = computed(() => authStore.isAuthenticated);
+const router = useRouter();
+// Logout handler
+const logout = () => {
+  authStore.logout();
+  router.push('/login');
 };
 </script>

@@ -19,14 +19,14 @@
           
           <tbody>
             <tr 
-              v-for="(application, index) in applications" 
+              v-for="(application, index) in applicationStore.applications" 
               :key="index" 
               class="hover:bg-gray-100"
             >
               <td class="py-2 px-4 border-b">{{ application.job_id.title }}</td>
-              <td class="py-2 px-4 border-b">{{ application.title}}</td>
-              <td class="py-2 px-4 border-b">{{ application.email }}</td>
-              <td class="py-2 px-4 border-b">{{ application.phone }}</td>
+              <td class="py-2 px-4 border-b">{{ application.candidate_id.user?.first_name }} {{ application.candidate_id.user?.last_name }}</td>
+              <td class="py-2 px-4 border-b">{{ application.candidate_id.user?.email }}</td>
+              <td class="py-2 px-4 border-b">{{ application.candidate_id.user?.phone }}</td>
               <td class="py-2 px-4 border-b">{{ application.status }}</td>
               <td class="py-2 px-4 border-b">
                 <button 
@@ -63,7 +63,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { useApplicationManager } from '@/manager/application';  // Import your Pinia store
-import DynamicModal from '@/components/dynamic/Modal.vue';
+import DynamicModal from '@/components/dynamic/ApplicationStatModal.vue';
 
 export default {
   components: {
@@ -108,21 +108,26 @@ export default {
     };
 
     // Handle modal submit
-    const handleModalSubmit = (formData) => {
+    const handleModalSubmit = async (formData) => {
       console.log('Modal Submitted:', formData);
-      
+
       if (formData.action === 'edit') {
-        // Update the application list with edited data
-        const index = applicationStore.applications.findIndex(app => app.email === formData.email);
-        if (index !== -1) {
-          applicationStore.applications[index] = { ...applicationStore.applications[index], ...formData };
+        try {
+          // Update the application status in the backend
+          await applicationStore.updateApplication(formData._id, { status: formData.status });
+
+          // Reflect the changes in the frontend
+          const index = applications.value.findIndex(app => app._id === formData._id);
+          if (index !== -1) {
+            applications.value[index].status = formData.status;
+          }
+        } catch (error) {
+          console.error("Error updating application:", error);
         }
       }
-      
+
       closeModal();
     };
-
-    console.log('Applications:', applicationStore.applications);
 
     return {
       applications: applicationStore.applications,  // Directly use the fetched applications
@@ -133,6 +138,7 @@ export default {
       openModal,
       closeModal,
       handleModalSubmit,
+      applicationStore,
     };
   },
 };

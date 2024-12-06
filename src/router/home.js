@@ -15,7 +15,7 @@ export default [
       path: '/job_detail/:id',
       name: 'JobDetail',
       component: () => import('@/views/candidateView/JobDetail.vue'),
-      meta: { layout: 'candidate' },
+      meta: { layout: 'candidate' , requiresAuth: true , roles: ['candidate']},
     },
     {
       path: '/about',
@@ -35,5 +35,12 @@ export default [
       component: () => import('@/views/candidateView/Faq.vue'),
       meta: { layout: 'candidate' },
     },
+    {
+      path: '/unauthorized',
+      name: 'Unauthorized',
+      component: () => import('@/views/Unauthorized.vue'),
+      meta: { layout: 'candidate' },
+    }
+    
   ];
   

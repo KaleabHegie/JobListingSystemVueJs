@@ -21,7 +21,7 @@
                 <div class="flex flex-col mt-2">
                   <div class="flex items-center text-gray-600 mb-1">
                     <span> By </span>
-                    <span class="text-red-500"> &nbsp;&nbsp;{{ job.company.name }}</span>
+                    <span class="text-red-500"> &nbsp;&nbsp;{{ job.company?.name }}</span>
                   </div>
                   <div class="flex items-center text-gray-600 mb-1">
                     <svg

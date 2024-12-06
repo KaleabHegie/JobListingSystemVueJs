@@ -39,10 +39,10 @@ export const useApplicationManager = defineStore('applications', {
     },
 
     // Add a new application
-    async addApplication(applicationData) {
+    async addApplication(jobId) {
       try {
         this.loading = true;
-        const response = await axios.post('/application/create_application', applicationData);
+        const response = await axios.post(`/application/apply/${jobId}`, {});
         this.applications.push(response.data);  // Add to the store
         return response.data;
       } catch (error) {
@@ -53,21 +53,26 @@ export const useApplicationManager = defineStore('applications', {
       }
     },
 
-    // Update an existing application
-    async updateApplication(applicationId, applicationData) {
+    async addBookmark(jobId) {
       try {
         this.loading = true;
-        const response = await axios.patch(`/application/update_application/${applicationId}`, applicationData);
-        const index = this.applications.findIndex((app) => app._id === applicationId);
-        if (index !== -1) {
-          this.applications[index] = response.data;  // Update the application in the store
-        }
+        const response = await axios.post(`/application/bookmark/${jobId}`, {});
         return response.data;
       } catch (error) {
-        this.error = error.response?.data?.message || 'Error updating application';
+        this.error = error.response?.data?.message || 'Error adding application';
         throw error;
       } finally {
         this.loading = false;
+      }
+    },
+
+    // Update an existing application
+    async updateApplication(applicationId, updatedData) {
+      try {
+        await axios.patch(`/application/update-stat/${applicationId}`, updatedData);
+      } catch (error) {
+        console.error("Error updating application:", error);
+        throw error;
       }
     },
 

@@ -3,7 +3,7 @@
       <h2 class="text-3xl font-semibold text-red-500 mb-4">
         <i class="fas fa-briefcase mr-2"></i> {{ job.title }}
         <span>
-          <button class="text-gray-500 hover:text-red-500 mt-10 ml-10">
+          <button @click="addBookmark" class="text-gray-500 hover:text-red-500 mt-10 ml-10">
             <i class="fas fa-bookmark mr-1"></i>
           </button>
         </span>
@@ -63,7 +63,7 @@
   
       <div class="flex justify-end mt-6">
         <button
-          class="text-blue-600 border-2 border-blue-600 hover:bg-blue-700 hover:border-blue-700 hover:text-white px-4 py-2 rounded-md mr-2"
+          @click="applyForJob" class="text-blue-600 border-2 border-blue-600 hover:bg-blue-700 hover:border-blue-700 hover:text-white px-4 py-2 rounded-md mr-2"
         >
           <i class="fas fa-paper-plane mr-1"></i> Apply Now
         </button>
@@ -74,37 +74,55 @@
       <p class="text-gray-600">Loading job details...</p>
     </div>
   </template>
-  
   <script>
-  import { useJobManager } from '@/manager/job';
-  import { onMounted, computed } from 'vue';
-  import { useRoute } from 'vue-router';
-  
-  export default {
-    name: 'JobDetails',
-    setup() {
-  const jobStore = useJobManager();
-  const route = useRoute();
-  const id = route.params.id;
+import { useJobManager } from '@/manager/job';
+import { useApplicationManager } from '@/manager/application';
+import { useAuthStore } from '@/manager/auth';
+import { useRoute } from 'vue-router';
+import { onMounted, computed } from 'vue';
+import axios from 'axios';
 
-  // Ensure jobs are fetched first
-  onMounted(async () => {
-    await jobStore.fetchJobs(); // Fetch jobs
-  });
+export default {
+  name: 'JobDetails',
+  setup() {
+    const jobStore = useJobManager();
+    const authStore = useAuthStore();
+    const applicationStore = useApplicationManager()
+    const route = useRoute();
+    const id = route.params.id;
 
-  // Compute the job by id
-  const job = computed(() => {
-    console.log('Fetching job with id:', id);
-    const job = jobStore.getJobById(id); 
-    console.log('Fetched job:', job);
-    return job;
-  });
+    // Ensure jobs are fetched first
+    onMounted(async () => {
+      await jobStore.fetchJobs(); // Fetch jobs
+    });
 
-  return {
-    job
-  };
-}
+    // Compute the job by id
+    const job = computed(() => jobStore.getJobById(id));
 
-  };
-  </script>
-  
+    // Function to apply for a job
+    const applyForJob = async () => {
+  try {
+    const application = await applicationStore.addApplication(id);
+    alert('Application submitted successfully!');
+  } catch (error) {
+    alert('Failed to apply for the job: ' + applicationStore.error);
+  }
+};
+const addBookmark = async () => {
+  try {
+    const bookmark = await applicationStore.addBookmark(id);
+    alert(' Bookmarked successfully!');
+  } catch (error) {
+    alert('Failed to bookmark job: ' + applicationStore.error);
+  }
+};
+
+
+    return {
+      job,
+      applyForJob,
+      addBookmark,
+    };
+  },
+};
+</script>

@@ -19,7 +19,7 @@
             <h3 class="text-xl font-semibold text-gray-800">{{ job.title }}</h3>
             <div class="flex flex-col mt-2">
               <div class="flex items-center text-gray-600 mb-1">
-                <span>By <span class="text-red-500">{{ job.company.name }}</span></span>
+                <span>By <span class="text-red-500">{{ job.company?.name }}</span></span>
               </div>
               <div class="flex items-center text-gray-600 mb-1">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -19,9 +19,28 @@
         </div>
 
         <!-- Logout Button -->
-        <button class="bg-red-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600 transition duration-200">
+        <button
+            @click="logout"
+            class="text-white bg-red-600 hover:bg-red-500 px-5 py-3 rounded-md text-sm font-medium"
+          >
             Logout
         </button>
     </div>
 </nav>
 </template>
+
+<script setup>
+ import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/manager/auth'; // Adjust the path as needed
+
+const authStore = useAuthStore();
+const router = useRouter();
+
+//
+// Logout handler
+const logout = () => {
+  authStore.logout();
+  router.push('/login'); // Redirect to the login page
+};
+
+</script>
