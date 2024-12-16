@@ -12,13 +12,13 @@
       <div v-else class="grid gap-6 md:grid-cols-3 lg:grid-cols-4">
         <!-- Sector 1: Engineering -->
         <div
-          v-for="(sector, index) in sectors.data?.slice(0,6)"
+          v-for="(sector, index) in sectors.data?.slice(0,8)"
           :key="index"
           class="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg border border-transparent transition-transform transform hover:scale-105 hover:shadow-xl hover:border-red-500"
         >
           <div :class="sector.iconBg + ' p-4 rounded-full mb-4'">
             <svg
-              :class="sector.iconColor + ' h-8 w-8'"
+              :class="sector.iconColor + ' h-12 w-12 ' "
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -27,7 +27,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="sector.iconPath" />
             </svg>
           </div>
-          <h3 class="text-lg font-semibold text-gray-800">{{ sector.name }}</h3>
+          <h3 class="text-lg font-semibold text-gray-800">{{ sector.title }}</h3>
           <p class="text-sm text-gray-500">{{ sector.jobCount }} Jobs</p>
         </div>
       </div>

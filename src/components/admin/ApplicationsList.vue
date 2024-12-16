@@ -8,12 +8,12 @@
         <table class="min-w-full bg-white border border-gray-300">
           <thead>
             <tr class="bg-gray-200 text-gray-800">
-              <th class="py-2 px-4 border-b">Position Applied</th>
-              <th class="py-2 px-4 border-b">Applicant Name</th>
-              <th class="py-2 px-4 border-b">Email</th>
-              <th class="py-2 px-4 border-b">Phone</th>
-              <th class="py-2 px-4 border-b">Status</th>
-              <th class="py-2 px-4 border-b">Actions</th>
+              <th class="text-left py-2 px-4 border-b">Position Applied</th>
+              <th class="text-left py-2 px-4 border-b">Applicant Name</th>
+              <th class="text-left py-2 px-4 border-b">Email</th>
+              <th class="text-left py-2 px-4 border-b">Phone</th>
+              <th class="text-left py-2 px-4 border-b">Status</th>
+              <th class="text-left py-2 px-4 border-b">Actions</th>
             </tr>
           </thead>
           
@@ -30,14 +30,8 @@
               <td class="py-2 px-4 border-b">{{ application.status }}</td>
               <td class="py-2 px-4 border-b">
                 <button 
-                  @click="openModal('application', 'view', application)" 
-                  class="text-white bg-blue-600 hover:bg-blue-700 p-2 rounded-md"
-                >
-                  <i class="fas fa-eye"></i>
-                </button>
-                <button 
                   @click="openModal('application', 'edit', application)" 
-                  class="text-white bg-yellow-600 hover:bg-yellow-700 p-2 rounded-md ml-2"
+                  class="text-yellow-600 hover:bg-yellow-700 p-2 rounded-md ml-2"
                 >
                   <i class="fas fa-pen"></i>
                 </button>
@@ -109,12 +103,12 @@ export default {
 
     // Handle modal submit
     const handleModalSubmit = async (formData) => {
-      console.log('Modal Submitted:', formData);
-
       if (formData.action === 'edit') {
         try {
           // Update the application status in the backend
+          console.log("Application updated:", formData);
           await applicationStore.updateApplication(formData._id, { status: formData.status });
+          
 
           // Reflect the changes in the frontend
           const index = applications.value.findIndex(app => app._id === formData._id);

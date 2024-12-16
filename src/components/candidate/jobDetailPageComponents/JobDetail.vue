@@ -74,49 +74,53 @@
       <p class="text-gray-600">Loading job details...</p>
     </div>
   </template>
-  <script>
-import { useJobManager } from '@/manager/job';
-import { useApplicationManager } from '@/manager/application';
-import { useAuthStore } from '@/manager/auth';
-import { useRoute } from 'vue-router';
-import { onMounted, computed } from 'vue';
-import axios from 'axios';
+<script>
+import { useJobManager } from "@/manager/job";
+import { useApplicationManager } from "@/manager/application";
+import { useAuthStore } from "@/manager/auth";
+import { useRoute, useRouter } from "vue-router"; // Use useRouter for navigation
+import { onMounted, computed } from "vue";
 
 export default {
-  name: 'JobDetails',
+  name: "JobDetails",
   setup() {
     const jobStore = useJobManager();
     const authStore = useAuthStore();
-    const applicationStore = useApplicationManager()
+    const applicationStore = useApplicationManager();
     const route = useRoute();
+    const router = useRouter(); // Initialize useRouter for navigation
+
     const id = route.params.id;
 
-    // Ensure jobs are fetched first
+    // Fetch jobs on mount
     onMounted(async () => {
-      await jobStore.fetchJobs(); // Fetch jobs
+      await jobStore.fetchJobs();
     });
 
-    // Compute the job by id
+    // Get the job by ID
     const job = computed(() => jobStore.getJobById(id));
 
     // Function to apply for a job
     const applyForJob = async () => {
-  try {
-    const application = await applicationStore.addApplication(id);
-    alert('Application submitted successfully!');
-  } catch (error) {
-    alert('Failed to apply for the job: ' + applicationStore.error);
-  }
-};
-const addBookmark = async () => {
-  try {
-    const bookmark = await applicationStore.addBookmark(id);
-    alert(' Bookmarked successfully!');
-  } catch (error) {
-    alert('Failed to bookmark job: ' + applicationStore.error);
-  }
-};
+      try {
+        await applicationStore.addApplication(id);
+        alert("Application submitted successfully!");
+        router.push("/profile/applied-jobs"); // Correctly use router for redirection
+      } catch (error) {
+        alert("Failed to apply for the job: " + applicationStore.error);
+      }
+    };
 
+    // Function to bookmark a job
+    const addBookmark = async () => {
+      try {
+        await applicationStore.addBookmark(id);
+        alert("Bookmarked successfully!");
+        router.push("/profile/bookmarked-jobs"); // Correctly use router for redirection
+      } catch (error) {
+        alert("Failed to bookmark job: " + applicationStore.error);
+      }
+    };
 
     return {
       job,

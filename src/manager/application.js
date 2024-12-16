@@ -68,6 +68,7 @@ export const useApplicationManager = defineStore('applications', {
 
     // Update an existing application
     async updateApplication(applicationId, updatedData) {
+      alert('here')
       try {
         await axios.patch(`/application/update-stat/${applicationId}`, updatedData);
       } catch (error) {

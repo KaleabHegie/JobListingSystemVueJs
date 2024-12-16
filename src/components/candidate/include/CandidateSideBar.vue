@@ -12,16 +12,16 @@
           <h2 class="text-xl font-semibold text-white hidden lg:block">James Brown</h2>
         </div>
         <ul class="space-y-2">
-          <li>
-            <div
-              class="flex items-center cursor-pointer p-2 text-gray-300 hover:bg-indigo-600 rounded-md"
-              @click="toggleProfileMenu"
-            >
-              <i class="fas fa-user mr-2"></i>
-              <span class="hidden lg:block">Profile</span>
-              <i class="fas fa-chevron-down ml-auto hidden lg:block" :class="{'rotate-180': profileMenuVisible}"></i>
-            </div>
-            <ul
+              <li>
+                <router-link
+                  to="/profile"
+                  class="flex items-center p-2 text-gray-300 hover:bg-indigo-600 rounded-md"
+                >
+                  <i class="fas fa-eye mr-2"></i>
+                  <span class="hidden lg:block">View Profile</span>
+                </router-link>
+              </li>
+            <!-- <ul
               class="ml-6 mt-2 space-y-1"
               :class="{'block': profileMenuVisible, 'hidden': !profileMenuVisible}"
             >
@@ -70,8 +70,8 @@
                   <span class="hidden lg:block">Skills</span>
                 </router-link>
               </li>
-            </ul>
-          </li>
+            </ul> -->
+          
           <li>
             <router-link
               to="/profile/applied-jobs"

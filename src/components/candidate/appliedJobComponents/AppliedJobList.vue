@@ -16,7 +16,6 @@
               <table class="table table-auto w-full">
                 <thead class="bg-gray-800 text-white">
                   <tr>
-                    <th scope="col" class="px-4 py-2 text-left">User Name</th>
                     <th scope="col" class="px-4 py-2 text-left">Job Title</th>
                     <th scope="col" class="px-4 py-2 text-left">Applied Date</th>
                     <th scope="col" class="px-4 py-2 text-left">Application Status</th>
@@ -29,10 +28,6 @@
                     :key="index"
                     class="border-b hover:bg-gray-100"
                   >
-                    <td class="px-4 py-2">
-                      <i class="fas fa-user text-blue-500 mr-2"></i>
-                      {{ job.candidate?.name || 'N/A' }}
-                    </td>
                     <td class="px-4 py-2">
                       <i class="fas fa-briefcase text-blue-500 mr-2"></i>
                       {{ job.job_id?.title || 'N/A' }}

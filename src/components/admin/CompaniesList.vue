@@ -7,23 +7,10 @@
         <input
           type="text"
           id="companySearch"
-          placeholder="🔍 Search companies..."
-          class="w-1/2 px-5 py-3 pl-12 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-600 shadow-sm transition duration-200"
+          placeholder=""
+          class="w-0 px-5 py-3 pl-12  rounded-full transition duration-200"
         />
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-6 h-6 absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M10 16l4-4m0 0l-4-4m4 4H6m6 4V8"
-          />
-        </svg>
+       
   
         <button
           @click="openCreateModal"
@@ -38,13 +25,13 @@
         <table class="min-w-full bg-white border border-gray-300">
           <thead>
             <tr class="bg-gray-200 text-gray-800">
-              <th class="py-2 px-4 border-b">Name</th>
-              <th class="py-2 px-4 border-b">Description</th>
-              <th class="py-2 px-4 border-b">Location</th>
-              <th class="py-2 px-4 border-b">Website</th>
-              <th class="py-2 px-4 border-b">Email</th>
-              <th class="py-2 px-4 border-b">Phone</th>
-              <th class="py-2 px-4 border-b">Actions</th>
+              <th class="text-left py-2 px-4 border-b">Name</th>
+              <th class="text-left py-2 px-4 border-b">Description</th>
+              <th class="text-left py-2 px-4 border-b">Location</th>
+              <th class="text-left py-2 px-4 border-b">Website</th>
+              <th class="text-left py-2 px-4 border-b">Email</th>
+              <th class="text-left py-2 px-4 border-b">Phone</th>
+              <th class="text-left py-2 px-4 border-b">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -69,13 +56,13 @@
               <td class="border-b">
                 <button
                   @click="openEditModal(company)"
-                  class="text-white bg-yellow-600 hover:bg-yellow-700 p-2 rounded-md"
+                  class="text-yellow-600 hover:bg-yellow-700 p-2 rounded-md"
                 >
                   <i class="fas fa-pen"></i>
                 </button>
                 <button
                   @click="deleteCompany(company._id)"
-                  class="text-white bg-red-600 hover:bg-red-700 p-2 rounded-md ml-2"
+                  class="text-red-600 hover:bg-red-700 p-2 rounded-md ml-2"
                 >
                   <i class="fas fa-trash-alt"></i>
                 </button>

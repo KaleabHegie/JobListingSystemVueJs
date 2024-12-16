@@ -90,7 +90,7 @@
                     Remove
                 </button>
             </div>
-            <button type="button" @click="addSkill" class="px-4 py-2 bg-gray-400 text-white rounded-md">
+            <button type="button" @click="addSkill" class="px-4 py-2 bg-orange-400 text-white rounded-md">
                 + Add Skill
             </button>
         </div>

@@ -16,7 +16,6 @@
             <table class="table table-auto w-full">
               <thead class="bg-gray-800 text-white">
                 <tr>
-                  <th scope="col" class="px-4 py-2 text-left">User Name</th>
                   <th scope="col" class="px-4 py-2 text-left">Job Title</th>
                   <th scope="col" class="px-4 py-2 text-left">Bookmark Date</th>
                 </tr>
@@ -27,11 +26,8 @@
                   v-for="(job, index) in profileStore.bookmarkedJobs"
                   :key="index"
                   class="border-b hover:bg-gray-100"
+                  @click="navigateToJob(job.job_id?._id)"
                 >
-                  <td class="px-4 py-2">
-                    <i class="fas fa-user text-blue-500 mr-2"></i>
-                    {{ job.candidate?.name || 'N/A' }}
-                  </td>
                   <td class="px-4 py-2">
                     <i class="fas fa-briefcase text-blue-500 mr-2"></i>
                     {{ job.job_id?.title || 'N/A' }}
@@ -66,10 +62,18 @@ export default {
     onMounted(() => {
       profileStore.getBookmarkedJobs();
     });
+    
 
     return {
       profileStore,
     };
+  },
+  methods: {
+    navigateToJob(jobId) {
+      if (jobId) {
+        this.$router.push(`/job_detail/${jobId}`);
+      }
+    },
   },
 };
 </script>

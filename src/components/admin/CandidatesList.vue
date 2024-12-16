@@ -2,38 +2,16 @@
   <div class="ml-[15%] w-[80%] p-6 mt-10">
     <h2 class="text-2xl font-semibold mb-4">Candidates List</h2>
 
-    <div class="relative mb-4">
-      <input
-        type="text"
-        id="candidateSearch"
-        placeholder="🔍 Search candidates..."
-        class="w-1/2 px-5 py-3 pl-12 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-600 shadow-sm transition duration-200"
-      />
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="w-6 h-6 absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M10 16l4-4m0 0l-4-4m4 4H6m6 4V8"
-        />
-      </svg>
-    </div>
-
-    <div class="overflow-x-auto">
+    
+    <div class="overflow-x-auto mt-10">
       <table class="min-w-full bg-white border border-gray-300">
         <thead>
           <tr class="bg-gray-200 text-gray-800">
-            <th class="py-2 px-4 border-b">Candidate Name</th>
-            <th class="py-2 px-4 border-b">Email</th>
-            <th class="py-2 px-4 border-b">Phone</th>
-            <th class="py-2 px-4 border-b">Status</th>
-            <th class="py-2 px-4 border-b">Actions</th>
+            <th class="text-left py-2 px-4 border-b">Candidate Name</th>
+            <th class="text-left py-2 px-4 border-b">Email</th>
+            <th class="text-left py-2 px-4 border-b">Phone</th>
+            <th class="text-left py-2 px-4 border-b">Status</th>
+            <th class="text-left py-2 px-4 border-b">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -47,19 +25,12 @@
             <td class="py-2 px-4 border-b">{{ candidate.user.phone }}</td>
             <td class="py-2 px-4 border-b">{{ candidate.user.active ? 'Active' : 'Inactive' }}</td>
             <td class="py-2 px-4 border-b">
-              <button
-                @click="viewCandidate(candidate)"
-                class="text-white bg-yellow-600 hover:bg-yellow-700 p-2 rounded-md"
-              >
-                <i class="fas fa-eye"></i> View
-              </button>
-              <button
-                @click="toggleCandidateStatus(candidate)"
-                class="text-white bg-green-600 hover:bg-red-700 p-2 rounded-md ml-2"
-              >
-                <i class="fas fa-toggle-on"></i>
-                {{ candidate.user.active ? 'Deactivate' : 'Activate' }}
-              </button>
+              <router-link :to="`/recruiter/candidate-details/${candidate._id}`">
+  <i class="fas fa-eye text-yellow-600 hover:bg-yellow-700"></i>
+</router-link>
+ 
+              
+             
             </td>
           </tr>
         </tbody>

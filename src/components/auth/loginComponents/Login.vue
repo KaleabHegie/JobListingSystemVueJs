@@ -83,7 +83,7 @@
         // Redirect based on the user's role
         switch (userRole) {
           case 'recruiter':
-            router.push('/recruiter/dashboard');
+            router.push('/recruiter/jobs-posted');
             break;
           case 'candidate':
             router.push('/profile');
